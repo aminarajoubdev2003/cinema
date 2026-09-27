@@ -1,0 +1,8 @@
+### Deposit
+PATCH http://localhost:3000/deposit
+Content-Type: application/json
+Authorization: Bearer  TOKEN
+{
+  "email": "ٌraghed54445@gmail.com",
+  "amount": 100000
+}

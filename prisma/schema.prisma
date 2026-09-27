@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id  Int  @id @default(autoincrement())
+  name String
+  email String @unique
+  password String 
+  role   String @default("MEMBER")
+  balance  Decimal @default(0)  @db.Decimal(10, 2)
+  bookings Booking[]
+}
+
+model Movie {
+  id  Int  @id @default(autoincrement())
+  title String @unique
+  shows  Show[]
+}
+
+model Hall {
+  id  Int  @id @default(autoincrement())
+  name String @unique
+  seats  Seat[]
+  shows  Show[]
+}
+
+model Seat {
+  id Int @id @default(autoincrement())
+  hallId Int @map("hall_id")
+  hall Hall @relation(fields: [hallId], references: [id])
+  row     String
+  number  Int
+  price  Decimal  @db.Decimal(10, 2)
+  bookings Booking[]
+  @@unique([hallId, row ,number ])
+}
+
+model Show {
+  id Int @id @default(autoincrement())
+  hallId Int @map("hall_id")
+  hall Hall @relation(fields: [hallId], references: [id])
+  movieId Int @map("movie_id")
+  movie Movie @relation(fields: [movieId], references: [id])
+  start_time DateTime
+  end_time DateTime
+  bookings Booking[]
+}
+
+model Booking {
+  id Int @id @default(autoincrement())
+  userId Int @map("user_id")
+  user User @relation(fields: [userId], references: [id])
+  showId Int @map("show_id")
+  show Show @relation(fields: [showId], references: [id])
+  seatId Int @map("seat_id")
+  seat Seat @relation(fields: [seatId], references: [id])
+  status String
+  expires_at DateTime
+  created_at DateTime @default(now())
+  amount Decimal  @db.Decimal(10, 2)
+}

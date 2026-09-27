@@ -1,0 +1,20 @@
+### Add Show
+POST http://localhost:3000/show
+Content-Type: application/json
+Authorization: Bearer TOKEN
+
+{
+  "hall_id": 3,
+  "movie_id": 2,
+  "start_time": "2026-10-01 19:00:00",
+  "end_time": "2026-10-01 21:00:00"
+}
+
+### Get Shows
+GET  http://localhost:3000/show
+Authorization: Bearer TOKEN
+
+
+### Get Seats For Show
+GET  http://localhost:3000/show/1
+Authorization: Bearer TOKEN

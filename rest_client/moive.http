@@ -1,0 +1,8 @@
+### Add Moive
+POST http://localhost:3000/movie
+Content-Type: application/json
+Authorization: Bearer TOKEN
+{
+  "title": ""
+}
+

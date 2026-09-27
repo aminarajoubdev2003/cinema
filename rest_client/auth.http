@@ -1,0 +1,19 @@
+### Register
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "name": "راما الرفاعي",
+  "email": "ٌRama6709445@gmail.com",
+  "password": ""
+}
+
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "",
+  "password": ""
+}
+
