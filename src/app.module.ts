@@ -10,9 +10,12 @@ import { ShowModule } from './show/show.module.js';
 import { BookingModule } from './booking/booking.module.js';
 import { DepositModule } from './deposit/deposit.module.js';
 import { LoggerMiddleware } from './logger/logger.middleware.js';
+import { ScheduleModule } from '@nestjs/schedule';
+import { TasksService } from './tasks/tasks.service.js';
 
 @Module({
   imports: [
+  ScheduleModule.forRoot(),
   AuthModule,
   ConfigModule.forRoot({ isGlobal: true }),
   PrismaModule,
@@ -24,7 +27,7 @@ import { LoggerMiddleware } from './logger/logger.middleware.js';
   DepositModule
 ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, TasksService],
   
 })
 export class AppModule {
