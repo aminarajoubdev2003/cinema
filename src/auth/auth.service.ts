@@ -49,7 +49,7 @@ export class AuthService {
     }catch (error){
 
       if ( error instanceof Error && error.message.includes('INVALID_EMAIL') ) { 
-        throw new UnauthorizedException('Invalid email')
+        throw new UnauthorizedException('Invalid email or password');
       } 
       throw error
     }
@@ -57,7 +57,7 @@ export class AuthService {
 
     const password = await bcrypt.compare(loginDto.password,userData.user_password)
     if( !password ){
-      throw new UnauthorizedException('Invalid password');
+      throw new UnauthorizedException('Invalid email or password');
     }
 
     const accessToken = this.jwtService.sign({

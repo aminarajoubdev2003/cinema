@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateBookingDto } from './dto/create-booking.dto.js';
 import { PayBookingDto } from './dto/pay-for-booking.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
@@ -27,10 +27,10 @@ export class BookingService {
       return booking[0];
     } catch (error) {
       if (error instanceof Error && error.message.includes('SHOW_NOT_FOUND')) {
-        throw new ConflictException('show not found');
+        throw new NotFoundException('show not found');
       }
       if (error instanceof Error && error.message.includes('SEAT_NOT_FOUND')) {
-        throw new ConflictException('seat not found');
+        throw new NotFoundException('seat not found');
       }
       if (
         error instanceof Error &&
@@ -63,7 +63,7 @@ export class BookingService {
 
     } catch (error) {
       if (error instanceof Error && error.message.includes('USER_NOT_FOUND')) {
-        throw new ConflictException('user not found');
+        throw new NotFoundException('user not found');
       }
       if (error instanceof Error && error.message.includes('BOOKING_NOT_AVAILABLE')) {
         throw new ConflictException('booking not available');

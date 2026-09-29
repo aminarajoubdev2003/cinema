@@ -19,7 +19,6 @@ import { TasksService } from './tasks/tasks.service.js';
   AuthModule,
   ConfigModule.forRoot({ isGlobal: true }),
   PrismaModule,
-  ConfigModule.forRoot({ isGlobal: true }),
   MovieModule,
   HallModule,
   ShowModule,

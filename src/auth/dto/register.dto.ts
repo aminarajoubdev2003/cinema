@@ -6,7 +6,7 @@ export class RegisterDto {
     @IsNotEmpty()
     @IsString()
     @Matches(/^[\u0600-\u06FF\s]+$/,{
-        message:'اسم المؤلف يجب  أن يحتوي على أحرف عربية فقط'
+        message:'الاسم يجب أن يحتوي على أحرف عربية فقط'
     })
     name:string
 

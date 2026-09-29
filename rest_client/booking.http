@@ -2,19 +2,17 @@
 POST http://localhost:3000/booking
 Content-Type: application/json
 Authorization: Bearer TOKEN
-
 {
-  "show_id": 3,
-  "seat_id": 253
+  "show_id": 1,
+  "seat_id": 135
 }
 
 ### Payment For Booking
 POST http://localhost:3000/booking/pay
 Content-Type: application/json
 Authorization: Bearer TOKEN
-
 {
-  "booking_id": 9
+  "booking_id": 11
 }
 
 ### Get Bookings

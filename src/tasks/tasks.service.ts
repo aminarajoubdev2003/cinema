@@ -6,7 +6,7 @@ import { PrismaService } from '../prisma/prisma.service.js';
 export class TasksService {
 constructor(private prisma: PrismaService) {}
   
-@Cron('*/3 * * * * *')
+@Cron(CronExpression.EVERY_MINUTE)
   async handleCron() {
     console.log('Cron running:', new Date());
     await this.prisma.$executeRaw`

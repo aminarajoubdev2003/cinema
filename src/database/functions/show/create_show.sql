@@ -42,5 +42,7 @@ RETURN QUERY
 INSERT INTO "Show" ( hall_id, movie_id, start_time, end_time ) 
 VALUES ( p_hall_id, P_movie_id, P_start_time, P_end_time) 
 RETURNING "Show".hall_id, "Show".movie_id, "Show".start_time, "Show".end_time;
+
+EXCEPTION WHEN exclusion_violation THEN RAISE EXCEPTION 'SHOW_TIME_CONFLICT';
 END;
 $$;
